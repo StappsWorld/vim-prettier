@@ -96,9 +96,6 @@ command! -nargs=? -range=% PrettierCliVersion call prettier#PrettierCli('--versi
 " prints prettier resolved cli path
 command! -nargs=? -range=% PrettierCliPath call prettier#PrettierCliPath()
 
-" prints stored prettier version
-command! -nargs=? -range=% DebugPrettierVersion echom g:prettier#version
-
 " map command
 if !hasmapto('<Plug>(Prettier)') && maparg('<Leader>p', 'n') ==# ''
   nmap <unique> <Leader>p <Plug>(Prettier)
@@ -109,4 +106,3 @@ nnoremap <silent> <Plug>(PrettierVersion) :PrettierVersion<CR>
 nnoremap <silent> <Plug>(PrettierCli) :PrettierCli<CR>
 nnoremap <silent> <Plug>(PrettierCliVersion) :PrettierCliVersion<CR>
 nnoremap <silent> <Plug>(PrettierCliPath) :PrettierCliPath<CR>
-nnoremap <silent> <Plug>(DebugPrettierVersion) :DebugPrettierVersion<CR>
