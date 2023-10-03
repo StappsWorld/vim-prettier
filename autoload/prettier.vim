@@ -329,7 +329,7 @@ function! s:Get_Prettier_Exec_Args(config) abort
 
     " Checking for prettier version and adding options according to it
     " Thanks to prettier 3 for breaking changes :)
-    if g:prettier_version <= 2
+    if g:prettier#version <= 2
       let l:cmd = l:cmd . ' --loglevel error' . ' --stdin '
     else
       let l:cmd = l:cmd .  ' --log-level error '
