@@ -65,6 +65,10 @@ function! prettier#Prettier(...) abort
   endif
 endfunction
 
+function! prettier#GetPrettierCliPath() abort
+  return s:Get_Prettier_Exec()
+endfunction
+
 function! s:Prettier_Exec_Async_Nvim(cmd, startSelection, endSelection) abort
   let l:async_cmd = a:cmd
 
