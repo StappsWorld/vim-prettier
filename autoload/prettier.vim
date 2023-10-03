@@ -312,8 +312,6 @@ function! s:Get_Prettier_Exec_Args(config) abort
           \ get(a:config, 'singleQuote', g:prettier#config#single_quote) .
           \ ' --bracket-spacing ' .
           \ get(a:config, 'bracketSpacing', g:prettier#config#bracket_spacing) .
-          \ ' --jsx-bracket-same-line ' .
-          \ get(a:config, 'jsxBracketSameLine', g:prettier#config#jsx_bracket_same_line) .
           \ ' --arrow-parens ' .
           \ get(a:config, 'arrowParens', g:prettier#config#arrow_parens) .
           \ ' --trailing-comma ' .
@@ -327,9 +325,15 @@ function! s:Get_Prettier_Exec_Args(config) abort
           \ ' --html-whitespace-sensitivity ' .
           \ get(a:config, 'htmlWhitespaceSensitivity', g:prettier#config#html_whitespace_sensitivity) .
           \ ' --stdin-filepath "' .
-          \ simplify(expand('%:p')) . '"' .
-          \ ' --loglevel error '.
-          \ ' --stdin '
+          \ simplify(expand('%:p')) . '"'
+
+    " Checking for prettier version and adding options according to it
+    " Thanks to prettier 3 for breaking changes :)
+    if g:prettier_version <= 2
+      let l:cmd = l:cmd . ' --loglevel error' . ' --stdin '
+    else
+      let l:cmd = l:cmd .  ' --log-level error '
+    endif
   return l:cmd
 endfunction
 
